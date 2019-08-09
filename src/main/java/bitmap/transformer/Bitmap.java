@@ -36,7 +36,7 @@ public class Bitmap {
         try {
             img = ImageIO.read(new File(path));
         }catch (IOException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+" " + path + " is not a path, try again");
         }
         return img;
     }
@@ -46,7 +46,7 @@ public class Bitmap {
             ImageIO.write(updatedImage, "bmp", new File(path));
         }
         catch (IOException e){
-            System.out.println(e.getMessage());
+            System.out.println(e.getMessage()+" " + path + " is not a path, try again");
         }
 
     }
