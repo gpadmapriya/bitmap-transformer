@@ -79,11 +79,17 @@ public class Bitmap {
         if(transform.equals("three")) {
             int[][] imgHeightNWidth = new int[img.getHeight()][img.getWidth()];
             Bitmap newBitmap = new Bitmap(imgHeightNWidth,img);
-            Color color = new Color(235, 244, 250);
-            int rgb = color.getRGB();
+            int width = newBitmap.img.getWidth();
             for (int i = 0; i < newBitmap.imgHeightNWidth.length; i++) {
-                for (int j = imgHeightNWidth[i].length/2; j < newBitmap.imgHeightNWidth[i].length; j++) {
-                    newBitmap.img.setRGB(j,i,rgb );
+                for (int j = 0; j < newBitmap.imgHeightNWidth[i].length; j++) {
+                    newBitmap.img.setRGB((width - 1) - j, i, img.getRGB(j, i));
+                }
+            }
+            int height = newBitmap.img.getHeight();
+
+            for (int i = 0; i < newBitmap.imgHeightNWidth.length; i++) {
+                for (int j = 0; j < newBitmap.imgHeightNWidth[i].length; j++) {
+                    newBitmap.img.setRGB(j,(height - 1) - i,  img.getRGB(j, i));
                 }
             }
             return newBitmap.img;
