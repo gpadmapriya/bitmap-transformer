@@ -1,8 +1,6 @@
 package bitmap.transformer;
 
 
-import javafx.scene.transform.MatrixType;
-
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.*;
@@ -22,9 +20,15 @@ public class Bitmap {
     }
 
     public static void main(String[] args) {
-        BufferedImage img = bitmapReadFile("./assets/coffee.bmp");
-        BufferedImage newImage = bitmapTransformer("2",img);
-        bitmapWriteFile(newImage,"./assets/coffeeNew.bmp" );
+        if(args.length == 3) {
+            BufferedImage img = bitmapReadFile(args[0]);
+            BufferedImage newImage = bitmapTransformer(args[2], img);
+            bitmapWriteFile(newImage, args[1]);
+            System.out.println("Success, you have transformed the picture");
+        }
+        else{
+            System.out.println("Please enter all the arguments in this order ./gradlew run --args ./assets/coffee.bmp ./assets/coffeeNew.bmp one");
+        }
     }
 
     public static BufferedImage bitmapReadFile(String path){
@@ -48,7 +52,7 @@ public class Bitmap {
     }
 
     public static BufferedImage bitmapTransformer(String transform, BufferedImage img){
-        if(transform == "1") {
+        if(transform.equals("one")) {
         int[][] imgHeightNWidth = new int[img.getHeight()][img.getWidth()];
         Bitmap newBitmap = new Bitmap(imgHeightNWidth,img);
         int width = newBitmap.img.getWidth();
@@ -60,7 +64,7 @@ public class Bitmap {
             }
             return newBitmap.img;
         }
-        if(transform == "2") {
+        if(transform.equals("two")){
         int[][] imgHeightNWidth = new int[img.getHeight()][img.getWidth()];
         Bitmap newBitmap = new Bitmap(imgHeightNWidth,img);
         int height = newBitmap.img.getHeight();
@@ -68,6 +72,18 @@ public class Bitmap {
             for (int i = 0; i < newBitmap.imgHeightNWidth.length; i++) {
                 for (int j = 0; j < newBitmap.imgHeightNWidth[i].length; j++) {
                     newBitmap.img.setRGB(j,(height - 1) - i,  img.getRGB(j, i));
+                }
+            }
+            return newBitmap.img;
+        }
+        if(transform.equals("three")) {
+            int[][] imgHeightNWidth = new int[img.getHeight()][img.getWidth()];
+            Bitmap newBitmap = new Bitmap(imgHeightNWidth,img);
+            Color color = new Color(235, 244, 250);
+            int rgb = color.getRGB();
+            for (int i = 0; i < newBitmap.imgHeightNWidth.length; i++) {
+                for (int j = imgHeightNWidth[i].length/2; j < newBitmap.imgHeightNWidth[i].length; j++) {
+                    newBitmap.img.setRGB(j,i,rgb );
                 }
             }
             return newBitmap.img;
