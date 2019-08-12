@@ -10,8 +10,8 @@ import javax.swing.*;
 
 
 public class Bitmap {
-    private int[][] imgHeightNWidth;
-    private BufferedImage img;
+    public int[][] imgHeightNWidth;
+    public BufferedImage img;
 
     public Bitmap(int[][]  imgHeightNWidth , BufferedImage img){
         this.imgHeightNWidth = imgHeightNWidth;
@@ -96,6 +96,18 @@ public class Bitmap {
         }
 
         return img;
+    }
+    public boolean compare(BufferedImage img, BufferedImage img2){
+        if(img ==  img2){
+            return true;
+        }
+        return false;
+    }
+    public boolean compareTransformed(BufferedImage img,  BufferedImage img2){
+        if(img == img2){
+            return true;
+        }
+        return false;
     }
 
 }
