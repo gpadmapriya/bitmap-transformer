@@ -98,13 +98,13 @@ public class Bitmap {
         return img;
     }
     public boolean compare(BufferedImage img, BufferedImage img2){
-        if(img ==  img2){
+        if(img.equals(img2)){
             return true;
         }
         return false;
     }
     public boolean compareTransformed(BufferedImage img,  BufferedImage img2){
-        if(img == img2){
+        if(img.equals(img2)){
             return true;
         }
         return false;
